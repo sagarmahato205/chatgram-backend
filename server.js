@@ -21,7 +21,7 @@ const io = new Server(server, {
     cors: {
         origin: [
             "http://localhost:5173",
-            "https://frontend-1duq7rkpe-sagar-mahato.vercel.app",
+            "https://frontend-eight-amber-3xdn3jnd0q.vercel.app",
         ],
         methods: ["GET", "POST"],
     },
