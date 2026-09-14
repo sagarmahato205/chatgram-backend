@@ -16,7 +16,7 @@ const messageSchema = new mongoose.Schema(
         },
         message:{
             type:String,
-            required:true,
+            required:false,
             trim:true,
             default:""
         },
@@ -25,7 +25,7 @@ const messageSchema = new mongoose.Schema(
             enum:["text","image","video"],
             default:"text"
         },
-        mediaURL:{
+        mediaUrl:{
             type:String,
             default:null
         },
