@@ -17,7 +17,17 @@ const messageSchema = new mongoose.Schema(
         message:{
             type:String,
             required:true,
-            trim:true
+            trim:true,
+            default:""
+        },
+        type:{
+            type:String,
+            enum:["text","image","video"],
+            default:"text"
+        },
+        mediaURL:{
+            type:String,
+            default:null
         },
         replyTo:{
             type:mongoose.Schema.Types.ObjectId,

@@ -4,12 +4,17 @@ const mongoose = require("mongoose");
 
 const sendMessage = async (req,res)=>{
     try{
-       const {receiverId , message , replyTo} = req.body;
+       const {receiverId , message , replyTo , type , mediaUrl} = req.body;
 
-       if(!receiverId || !message){
+       if(!receiverId ){
         return res.status(400).json({
-            message:"Receiver Id and Message are required"
+            message:"Receiver Id are required"
         });
+       }
+       if(!message && !mediaUrl){
+        return res.status(400).json({
+            message:"Message or media is required"
+        })
        }
 
        if(receiverId === req.user.userId){
@@ -49,7 +54,9 @@ const sendMessage = async (req,res)=>{
        const newMessage = await Message.create({
         sender:req.user.userId,
         receiver:receiverId,
-        message,
+        message:message || "",
+        type:type || "text",
+        mediaUrl:mediaUrl || null,
         replyTo:replyTo || null
        });
 

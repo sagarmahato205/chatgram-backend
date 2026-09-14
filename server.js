@@ -9,6 +9,7 @@ const connectDB = require("./config/db");
 
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const mediaRoutes = require("./routes/mediaRoutes");
 const friendRoutes = require("./routes/friendRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 
@@ -33,6 +34,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/friends", friendRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/media", mediaRoutes);
 
 app.get("/", (req, res) => {
     res.send("Chatgram Backend is running");
@@ -131,6 +133,8 @@ io.on("connection", (socket) => {
 
 connectDB();
 
-server.listen(5000, () => {
-    console.log("Chatgram backend is running on http://localhost:5000");
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+    console.log(`Chatgram backend is running on port ${PORT}`);
 });
